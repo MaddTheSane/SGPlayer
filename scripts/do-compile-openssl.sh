@@ -91,22 +91,22 @@ if [ "$FF_PLATFORM" = "iOS" ]; then
     if [ "$FF_ARCH" = "i386" ]; then
         FF_BUILD_NAME="openssl-i386"
         FF_XCRUN_PLATFORM="iPhoneSimulator"
-        FF_XCRUN_OSVERSION="-mios-simulator-version-min=12.0"
-        OPENSSL_CFG_FLAGS="darwin-i386-cc no-asm $OPENSSL_CFG_FLAGS"
+        FF_XCRUN_OSVERSION="-mios-simulator-version-min=8.0"
+        OPENSSL_CFG_FLAGS="darwin-i386-cc no-asm no-engine $OPENSSL_CFG_FLAGS"
     elif [ "$FF_ARCH" = "x86_64" ]; then
         FF_BUILD_NAME="openssl-x86_64"
         FF_XCRUN_PLATFORM="iPhoneSimulator"
-        FF_XCRUN_OSVERSION="-mios-simulator-version-min=12.0"
-        OPENSSL_CFG_FLAGS="darwin64-x86_64-cc no-asm $OPENSSL_CFG_FLAGS"
+        FF_XCRUN_OSVERSION="-mios-simulator-version-min=8.0"
+        OPENSSL_CFG_FLAGS="darwin64-x86_64-cc no-asm no-engine $OPENSSL_CFG_FLAGS"
     elif [ "$FF_ARCH" = "armv7" ]; then
         FF_BUILD_NAME="openssl-armv7"
         FF_XCRUN_PLATFORM="iPhoneOS"
-        FF_XCRUN_OSVERSION="-miphoneos-version-min=12.0"
+        FF_XCRUN_OSVERSION="-miphoneos-version-min=8.0"
         OPENSSL_CFG_FLAGS="iphoneos-cross $OPENSSL_CFG_FLAGS"
     elif [ "$FF_ARCH" = "arm64" ]; then
         FF_BUILD_NAME="openssl-arm64"
         FF_XCRUN_PLATFORM="iPhoneOS"
-        FF_XCRUN_OSVERSION="-miphoneos-version-min=12.0"
+        FF_XCRUN_OSVERSION="-miphoneos-version-min=8.0"
         OPENSSL_CFG_FLAGS="iphoneos-cross $OPENSSL_CFG_FLAGS"
     elif [ "$FF_ARCH" = "arm64e" ]; then
         FF_BUILD_NAME="openssl-arm64e"
@@ -141,12 +141,12 @@ elif [ "$FF_PLATFORM" = "tvOS" ]; then
     if [ "$FF_ARCH" = "x86_64" ]; then
         FF_BUILD_NAME="openssl-x86_64"
         FF_XCRUN_PLATFORM="AppleTVSimulator"
-        FF_XCRUN_OSVERSION="-DHAVE_FORK=0 -mtvos-simulator-version-min=12.0"
+        FF_XCRUN_OSVERSION="-DHAVE_FORK=0 -mtvos-simulator-version-min=10.2"
         OPENSSL_CFG_FLAGS="darwin64-x86_64-cc $OPENSSL_CFG_FLAGS"
     elif [ "$FF_ARCH" = "arm64" ]; then
         FF_BUILD_NAME="openssl-arm64"
         FF_XCRUN_PLATFORM="AppleTVOS"
-        FF_XCRUN_OSVERSION="-DHAVE_FORK=0 -mtvos-version-min=12.0"
+        FF_XCRUN_OSVERSION="-DHAVE_FORK=0 -mtvos-version-min=10.2"
         OPENSSL_CFG_FLAGS="iphoneos-cross $OPENSSL_CFG_FLAGS"
     else
         echo "unknown architecture $FF_PLATFORM, $FF_ARCH";
@@ -195,7 +195,7 @@ echo "\n--------------------"
 echo "[*] configurate openssl"
 echo "--------------------"
 
-#OPENSSL_CFG_FLAGS="$OPENSSL_CFG_FLAGS $FF_XCODE_BITCODE"
+OPENSSL_CFG_FLAGS="$OPENSSL_CFG_FLAGS $FF_XCODE_BITCODE"
 OPENSSL_CFG_FLAGS="$OPENSSL_CFG_FLAGS --openssldir=$FF_BUILD_PREFIX --prefix=$FF_BUILD_PREFIX"
 
 # xcode configuration

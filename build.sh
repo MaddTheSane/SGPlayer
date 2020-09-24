@@ -6,7 +6,7 @@ PLATFORM=$1
 ACTION=$2
 
 FFMPEG_VERSION=n4.3.1
-OPENSSL_VERSION=be63e58732cedc0bbc39777d1cf7556e55f146ef
+OPENSSL_VERSION=OpenSSL_1_1_1g
 
 # We don't want package managers to mess up the build
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
